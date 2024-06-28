@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-from typing import List
 
+from typing import List
 
 def pascal_triangle(n: int) -> List[list]:
     '''
-    Pascal triangle
+    Generates Pascal's triangle up to the nth row.
     '''
     if n <= 0:
         return []
@@ -18,11 +18,12 @@ def pascal_triangle(n: int) -> List[list]:
     triangle = [[1], [1, 1]]
 
     for i in range(2, n):
-        temp = [1, 1]
-        for j in range(0, len(triangle[-1])-1):
+        temp = [1]  # Start each row with 1
+        for j in range(len(triangle[-1]) - 1):
             a = triangle[-1][j]
-            b = triangle[-1][j+1]
-            temp.insert(-1, a + b)
+            b = triangle[-1][j + 1]
+            temp.append(a + b)
+        temp.append(1)  # End each row with 1
         triangle.append(temp)
 
     return triangle
